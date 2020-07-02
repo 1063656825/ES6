@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // const text = "邓哥很帅";
+
+        // console.log("是否包含很字", text.includes("很"));
+        // console.log("第一位是否为邓字", text.includes("邓", 0));
+        // console.log("是否以邓开头", text.startsWith("邓"));
+        // console.log("是否以很帅结尾", text.endsWith("很帅"));
+        // console.log("重复四次", text.repeat(4));
+
+        var love1 = "秋葵";
+        var love2 = "香菜";
+        var text = myTag `邓哥喜欢${love1},邓哥也喜欢${love2}。`;
+        // myTag自己起的 相当于
+        // text = myTag(["邓哥喜欢", ",邓哥也喜欢", "。"], "秋葵", "香菜")
+        function myTag(parts, arg1, arg2) {
+            console.log(parts);
+            console.log(arg1);
+            console.log(arg2);
+        }
+
+        function myTag(parts) {
+            console.log(parts)
+            const rest = Array.prototype.slice.apply(arguments).slice(1)
+            console.log(rest)
+                // parts.length = rest.length + 1
+        }
+    </script>
+</body>
+
+</html>

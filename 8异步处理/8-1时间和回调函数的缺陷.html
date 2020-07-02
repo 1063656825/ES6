@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>
+        <button id="btn1">按钮1：给按钮2注册点击事件</button>
+        <button id="btn2">按钮2：给按钮3注册点击事件</button>
+        <button id="btn3">按钮3：点击后弹出Hello</button>
+    </p>
+    <script src="./8-1.js"></script>
+    <script src="./ajax.js"></script>
+    <script>
+        // const btn1 = document.getElementById("btn1");
+        // const btn2 = document.getElementById("btn2");
+        // const btn3 = document.getElementById("btn3");
+        // // 回调地狱1
+        // btn1.addEventListener("click", function() {
+        //         btn2.addEventListener("click", function() {
+        //             btn3.addEventListener("click", function() {
+        //                 alert("hello")
+        //             })
+        //         })
+        //     })
+        //     // 回调地狱2
+        // function biaobai(god, callback) {
+        //     console.log(`登哥向女神${god}发出了表白信息`);
+        //     setTimeout(() => {
+        //         if (Math.random() < 0.1) {
+        //             callback(true)
+        //         } else {
+        //             callback(false)
+        //         }
+        //     }, 1000);
+        // }
+        // biaobai("女神1", function(result) {
+        //     if (result) {
+        //         console.log("女神1答应了，登哥很开心！")
+        //     } else {
+        //         console.log("女神1拒绝了，登哥很淡定！向女神2发送信息");
+        //         biaobai("女神2", function(result) {
+        //             if (result) {
+        //                 console.log("女神2答应了，登哥很开心！")
+        //             } else {
+        //                 console.log("女神2拒绝了，登哥小失落！向女神3发送信息");
+        //                 biaobai("女神3", function(result) {
+        //                     if (result) {
+        //                         console.log("女神3答应了，登哥很开心！")
+        //                     } else {
+        //                         console.log("女神3拒绝了，登哥很失落！寻找新女神");
+        //                     }
+        //                 })
+        //             }
+        //         })
+        //     }
+        // })
+
+
+        // // 回调地狱3
+        // // 获取李华所在班级的老师信息
+        // ajax({
+        //     url: "./data/students.json",
+        //     success: function(data) {
+        //         for (let i = 0; i < data.length; i++) {
+        //             if (data[i].name === "李华") {
+        //                 const cid = data[i].classId;
+        //                 ajax({
+        //                     url: "./data/classes.json",
+        //                     success: function(data) {
+        //                         for (let i = 0; i < data.length; i++) {
+        //                             if (data[i].id === cid) {
+        //                                 const tID = data[i].teacherId;
+        //                                 ajax({
+        //                                     url: "./data/teachers.json",
+        //                                     success: function(data) {
+        //                                         for (let i = 0; i < data.length; i++) {
+        //                                             if (data[i].id === tID) {
+        //                                                 console.log(data[i]);
+        //                                             }
+
+        //                                         }
+        //                                     }
+        //                                 })
+        //                             }
+
+        //                         }
+        //                     }
+        //                 })
+        //             }
+
+        //         }
+        //     }
+        // })
+
+        /*
+        邓哥心中有二十个女神，他决定用更加高效的办法
+            他同时给二十个女神表白，如果有女神同意，就拒绝其他的女神
+            并且，当所有的女神回复完成后，他要把所有的回复都记录到日志进行分析
+            用代码模拟上面的场景
+        */
+        function biaobai(god, callback) {
+            console.log(`登哥向女神${god}发出了表白信息`);
+            setTimeout(() => {
+                if (Math.random() < 0.1) {
+                    callback(true)
+                } else {
+                    callback(false)
+                }
+            }, Math.floor(Math.random() * (3000 - 1000) + 1000));
+        }
+
+        let temp = null;
+        for (let i = 0; i < 20; i++) {
+
+            biaobai(`nvshen${i}`, function(result) {
+                if (result) {
+
+                    console.log(`女神${i}同意了`)
+                    if (temp === null) {
+                        temp = i;
+                        console.log(`登哥找到了真爱，女神${i}`)
+                    } else {
+                        console.log("朋友开玩笑发的")
+                    }
+                } else {
+                    console.log(`女神${i}拒绝了`)
+                }
+            })
+
+        }
+    </script>
+</body>
+
+</html>

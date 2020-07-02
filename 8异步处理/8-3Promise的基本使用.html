@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const pro = new Promise((resolve, reject) => {
+            console.log(`登哥向女神1发出了表白信息`);
+            setTimeout(() => {
+                if (Math.random() < 0.1) {
+                    resolve(true)
+                } else {
+                    resolve(false)
+                }
+            }, 1000);
+        })
+    </script>
+</body>
+
+</html>

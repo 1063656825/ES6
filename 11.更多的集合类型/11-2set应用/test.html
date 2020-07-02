@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 两个数组的并集、交集、差集 （不能出现重复项），得到的结果是一个新数组
+        const arr1 = [33, 22, 55, 33, 11, 33, 5]
+        const arr2 = [22, 55, 77, 88, 88, 99, 99]
+
+        //并集
+        // const result = [...new Set(arr1.concat(arr2))];
+        console.log('并集', [...new Set([...arr1, ...arr2])])
+
+        const cross = [...new Set(arr1)].filter((item) => arr2.indexOf(item) >= 0)
+            //交集
+        console.log('交集', cross)
+
+        //差集
+        // console.log("差集", [...new Set([...arr1, ...arr2])].filter(item => arr1.indexOf(item) >= 0 && arr2.indexOf(item) < 0 || arr2.indexOf(item) >= 0 && arr1.indexOf(item) < 0))
+        console.log(
+            '差集', [...new Set([...arr1, ...arr2])].filter(
+                (item) => cross.indexOf(item) < 0
+            )
+        )
+    </script>
+    <script>
+        const arr11 = [33, 22, 55, 33, 11, 33, 5]
+        const arr12 = [22, 55, 77, 88, 88, 99, 99]
+            // 并集
+        const s = new Set(arr11)
+        const a = new Set(arr12)
+        const res = [...s, ...a]
+        console.log(...new Set(res))
+            //  等效于
+        const s1 = new Set(arr1.concat(arr2))
+        const res1 = [...s1]
+        console.log(res1)
+            // 等效于
+        console.log('并集', [...new Set(arr1.concat(arr2))])
+
+        // 交集
+        const j1 = new Set(arr1)
+        const j2 = new Set(arr2)
+        let arr = []
+        const rest3 = [...j1].forEach((element) => {
+            if (j2.has(element)) {
+                arr.push(element)
+            }
+        })
+        console.log(arr)
+            //等效于 filter过滤器
+        const cr = [...new Set(arr1)].filter((item) => arr2.indexOf(item) >= 0)
+        console.log(cr)
+
+        // 差集
+        console.log(res1.filter((item) => cr.indexOf(item) < 0))
+        console.log(
+            '差集', [...new Set([...arr1, ...arr2])].filter(
+                (item) =>
+                (arr1.indexOf(item) >= 0 && arr2.indexOf(item) < 0) ||
+                (arr2.indexOf(item) >= 0 && arr1.indexOf(item) < 0)
+            )
+        )
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // const pro = new Promise((resolve, reject) => {
+        //     reject(1);
+        // })
+
+        // pro.then(res => console.log("then", res * 2))
+        // pro.catch(res => console.log("catch：", res * 3)) //catch: 3
+        // pro.finally(() => console.log("finally")) //finally
+
+        // const pro = new Promise((resolve, reject) => {
+        //         resolve(1);
+        //     })
+        //     // 等效于
+        // const pro = Promise.resolve(1)
+        // console.log(pro)
+
+        // const pro = new Promise((resolve, reject) => {
+        //     resolve(1);
+        // })
+
+        // const p = Promise.resolve(pro)
+        //     // 等效于
+        // const pro = p;
+        // console.log(pro === p) //true
+
+        // const proms = [];
+        // for (let i = 0; i < 10; i++) {
+        //     proms.push(new Promise((resolve, reject) => {
+        //         setTimeout(() => {
+        //             if (Math.random() > 0.1) {
+        //                 console.log(i, "已完成")
+        //                 resolve(i);
+        //             } else {
+        //                 console.log(i, "失败")
+        //                 reject(i)
+        //             }
+
+        //         }, 1000)
+        //     }))
+        // }
+
+        // 等到所有的promise变成resolved状态后输出： 完全完成
+        // const pro = Promise.all(proms)
+        // pro.then(data => {
+        //     console.log("所有人都完成了", data)
+        // })
+        // pro.catch(err => {
+        //     console.log("有的失败", err)
+        // })
+        // console.log(proms)
+
+        // const pro = Promise.race(proms)
+        // pro.then(data => {
+        //     console.log("有人完成了", data)
+        // })
+        // pro.catch(err => {
+        //     console.log("有的失败", err)
+        // })
+        // console.log(proms)
+
+
+
+        /*
+                邓哥心中有二十个女神，他决定用更加高效的办法
+                他同时给二十个女神表白，如果有女神同意，就拒绝其他的女神
+                并且，当所有的女神回复完成后，他要把所有的回复都记录到日志进行分析
+                用代码模拟上面的场景
+            */
+        function biaobai(god) {
+            return new Promise((resolve, reject) => {
+                console.log(`邓哥向女神【${god}】发出了表白短信`);
+                setTimeout(() => {
+                    if (Math.random() < 0.5) {
+                        //女神同意拉
+                        console.log(god, "同意")
+                        resolve(true);
+                    } else {
+                        console.log(god, "拒绝")
+                        resolve(false);
+                    }
+                }, Math.floor(Math.random() * (3000 - 1000) + 1000));
+            })
+        }
+        const proms = [];
+        let hasAgree = false; //是否有女神同意
+
+        for (let i = 0; i < 20; i++) {
+            const pro = biaobai(`女神${i}`).then(resp => {
+                if (resp) {
+                    if (hasAgree) {
+                        console.log("发错了信息，登哥很机智。")
+                    } else {
+                        hasAgree = true;
+                        console.log("登哥开心")
+                    }
+                }
+                return resp;
+            })
+            proms.push(pro)
+
+        }
+        Promise.all(proms).then(result => {
+            console.log("日志记录", result);
+        })
+    </script>
+
+</body>
+
+</html>

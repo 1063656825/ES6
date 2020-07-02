@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function addTwoNumbers(l1, l2) {
+            function creatInterator(arr) {
+                let i = 0;
+                return {
+                    next() {
+                        var result = {
+                            value: arr[i],
+                            done: i >= arr.lengtk
+                        }
+                        i++;
+                        return result;
+                    }
+                }
+            }
+
+            let a = 0,
+                b = 0,
+                c = 0,
+                sum1, sum2, sum3;
+            const iter1 = creatInterator(l1);
+            a = iter1.next().value;
+            b = iter1.next().value;
+            c = iter1.next().value;
+
+            console.log(a, b, c)
+            sum1 = c * 100 + b * 10 + a;
+            const iter2 = creatInterator(l2);
+            a = iter2.next().value;
+            b = iter2.next().value;
+            c = iter2.next().value;
+            sum2 = c * 100 + b * 10 + a;
+            console.log(a, b, c)
+            sum3 = sum1 + sum2;
+            a = sum3 % 10;
+            b = parseInt(sum3 / 10) % 10;
+            c = parseInt(sum3 / 100);
+            console.log(a, b, c)
+            return [a, b, c]
+        };
+        var l1 = [2, 4, 3];
+        var l2 = [5, 6, 4];
+        addTwoNumbers(l1, l2);
+    </script>
+</body>
+
+</html>
